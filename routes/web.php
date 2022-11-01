@@ -18,5 +18,11 @@ Route::get('/', function () {
     //return view('index');
     //return view('post');
     //return view('contact');
-    return view('about');
+    //return view('about');
+    return redirect(route('posts.index'));
 });
+
+Route::get('posts', [PostsController::class, 'index'])->name('posts.index');
+Route::get('post', [PostsController::class, 'show'])->name('posts.show');
+Route::get('contact', [PostsController::class, 'contact'])->name('posts.contact');
+Route::get('about', [PostsController::class, 'about'])->name('posts.about');
