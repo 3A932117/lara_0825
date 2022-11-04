@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('title');
-            $table->text('content');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('title', 500)->change();
+            $table->boolean('is_feature')->default(false)->after('content');
         });
     }
 
@@ -28,6 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('title')->change();
+            $table->dropColumn('is_feature');
+        });
     }
 };
