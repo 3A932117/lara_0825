@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Models\Post;
+use App\Models\Comment;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +87,8 @@ Route::get('/', function () {
     /*$lastPost = Post::orderBy('id', 'DESC')->first(); //先抓資料遞減排序，然後只取第一筆
     dd($lastPost);*/
 
-    $post = Post::find(10); //找資料表中id=6的資料
+    /////練習7/////
+    /*$post = Post::find(10); //找資料表中id=6的資料
     echo '標題:'.$post->title.'<br>';
     echo '內容:'.$post->content.'<br>';
     echo '<hr>';
@@ -94,7 +96,16 @@ Route::get('/', function () {
     foreach ($comments as $comment){
         echo '留言: '.$comment->content."<br>";
         echo '-----------------------------'.'<br>';
-    }
+    }*/
+
+    /////透過post()關係，擷取一筆posts資料/////
+    $comment = Comment::find(2);
+    echo $comment->content.'<br>';
+    echo '******************'.'<br>';
+    $post = $comment->post()->first();
+    echo $post->id.'<br>';
+    echo $post->title.'<br>';
+    echo $post->content.'<br>';
 
 });
 
