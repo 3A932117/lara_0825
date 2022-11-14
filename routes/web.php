@@ -53,12 +53,25 @@ Route::get('/', function () {
     return'Save, OK!';*/
 
     /////使用update()更新資料/////
-    $post = Post::find(2);
+    /*$post = Post::find(2);
     $post -> update([
         'title' => 'update title',
         'content' => 'update content',
     ]);
-    return'Update, OK!';
+    return'Update, OK!';*/
+
+    /////使用delete()刪除資料/////
+    /*$post = Post::find(11);
+    $post -> delete();
+    return 'Deleted!';*/
+
+    /////使用destroy()刪除資料/////
+    //Post::destroy(2);
+
+    /////使用destroy()刪除多筆資料/////
+    Post::destroy(3, 5, 7);
+    return 'Deleted!';
+
 });
 
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
