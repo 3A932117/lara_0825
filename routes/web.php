@@ -48,9 +48,17 @@ Route::get('/', function () {
     return'Save, OK!';*/
 
     /////使用 條件式 查詢資料/////
-    $posts = Post::where('id', '<', 10)->orderBy('id', 'DESC')->get();//查詢符合條件(id<10)的貼文
+    /*$posts = Post::where('id', '<', 10)->orderBy('id', 'DESC')->get();//查詢符合條件(id<10)的貼文
     dd($posts);
-    return'Save, OK!';
+    return'Save, OK!';*/
+
+    /////使用update()更新資料/////
+    $post = Post::find(2);
+    $post -> update([
+        'title' => 'update title',
+        'content' => 'update content',
+    ]);
+    return'Update, OK!';
 });
 
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
