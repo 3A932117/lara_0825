@@ -69,8 +69,32 @@ Route::get('/', function () {
     //Post::destroy(2);
 
     /////使用destroy()刪除多筆資料/////
-    Post::destroy(3, 5, 7);
-    return 'Deleted!';
+    /*Post::destroy(3, 5, 7);
+    return 'Deleted!';*/
+
+    /////使用all()取得Collection(多筆貼文的集合)/////
+    /*$allPosts = Post::all();
+    dd($allPosts);*/
+
+    /*$featuredPosts = Post::where('is_feature', 1)->get(); //多筆貼文的集合
+    dd($featuredPosts);*/
+
+    /////取得Model 單一筆貼文/////
+    /*$fourthPost = Post::find(4);
+    dd($fourthPost);*/
+
+    /*$lastPost = Post::orderBy('id', 'DESC')->first(); //先抓資料遞減排序，然後只取第一筆
+    dd($lastPost);*/
+
+    $post = Post::find(10); //找資料表中id=6的資料
+    echo '標題:'.$post->title.'<br>';
+    echo '內容:'.$post->content.'<br>';
+    echo '<hr>';
+    $comments = $post->comments()->get(); //->get()可省略
+    foreach ($comments as $comment){
+        echo '留言: '.$comment->content."<br>";
+        echo '-----------------------------'.'<br>';
+    }
 
 });
 
