@@ -23,16 +23,33 @@ Route::get('/', function () {
     //return view('about');
     //return redirect(route('posts.index'));
 
+    /////使用save()新增資料/////
     /*$post = new Post(); //先產生Post的物件 $post, $post將代表posts資料表的第一則貼文
     $post -> title = 'test titles'; //指定貼文的title
     $post -> content = 'test content'; //指定貼文的content
     $post -> save(); //將新貼文$post存入posts資料表
     return'Save, OK!';*/
 
-    Post::create([
+    /////使用create()新增資料/////
+    /*Post::create([
         'title' => 'create title',
         'content' => 'create content',
     ]);
+    return'Save, OK!';*/
+
+    /////使用all()查詢資料/////
+    /*$posts = Post::all(); //取出posts資料表所有貼文
+    dd($posts); //dd()是一個輔助方法，dd = data dump，可將變數內容直接倒出，並停止程式執行
+    return'Save, OK!';*/
+
+    /////使用find()查詢資料/////
+    /*post = Post::find(2); //倒出id=2的內容
+    dd($post);
+    return'Save, OK!';*/
+
+    /////使用 條件式 查詢資料/////
+    $posts = Post::where('id', '<', 10)->orderBy('id', 'DESC')->get();//查詢符合條件(id<10)的貼文
+    dd($posts);
     return'Save, OK!';
 });
 
