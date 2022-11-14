@@ -22,10 +22,17 @@ Route::get('/', function () {
     //return view('contact');
     //return view('about');
     //return redirect(route('posts.index'));
-    $post = new Post(); //先產生Post的物件 $post, $post將代表posts資料表的第一則貼文
+
+    /*$post = new Post(); //先產生Post的物件 $post, $post將代表posts資料表的第一則貼文
     $post -> title = 'test titles'; //指定貼文的title
     $post -> content = 'test content'; //指定貼文的content
     $post -> save(); //將新貼文$post存入posts資料表
+    return'Save, OK!';*/
+
+    Post::create([
+        'title' => 'create title',
+        'content' => 'create content',
+    ]);
     return'Save, OK!';
 });
 
